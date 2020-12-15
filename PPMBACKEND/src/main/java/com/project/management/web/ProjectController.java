@@ -48,4 +48,15 @@ public class ProjectController {
     return new ResponseEntity<String>(
         "Project with ID '" + projectId + "'is deleted", HttpStatus.OK);
   }
+
+  @PutMapping("")
+  public ResponseEntity<?> updateProject(@Valid @RequestBody Project project, BindingResult result){
+
+    ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService((result));
+    if(errorMap != null)
+      return errorMap;
+
+    Project updatedProject = projectService.updateProject(project);
+    return new ResponseEntity<Project>(updatedProject, HttpStatus.OK);
+  }
 }
