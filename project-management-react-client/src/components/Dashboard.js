@@ -5,7 +5,11 @@ import { connect } from "react-redux";
 import { getProjects } from "../actions/projectActions";
 import PropTypes from "prop-types";
 class Dashboard extends Component {
+  componentDidMount() {
+    this.props.getProjects();
+  }
   render() {
+    const { projects } = this.props.project;
     return (
       <div className="projects">
         <div className="container">
@@ -16,7 +20,9 @@ class Dashboard extends Component {
               <CreateProjectButton />
               <br />
               <hr />
-              <ProjectItem />
+              {projects.map((project) => (
+                <ProjectItem key={project.id} project={project} />
+              ))}
             </div>
           </div>
         </div>

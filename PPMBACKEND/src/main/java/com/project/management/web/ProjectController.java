@@ -24,7 +24,7 @@ public class ProjectController {
       @Valid @RequestBody Project project, BindingResult bindingResult) {
 
     ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(bindingResult);
-    if (errorMap != null) return errorMap;
+    test :if (errorMap != null) return errorMap;
     Project project1 = projectService.saveOrUpdateProject(project);
 
     return new ResponseEntity<>(project, HttpStatus.CREATED);
