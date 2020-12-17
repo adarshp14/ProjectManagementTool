@@ -1,11 +1,10 @@
 package com.project.management.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.validation.annotation.Validated;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
@@ -15,10 +14,8 @@ public class Project {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-
   @NotBlank(message = "Project name cannot be blank")
   private String projectName;
-
 
   @Size(min = 4, max = 5, message = "Please use between 4 to 5 characters")
   @Column(updatable = false, unique = true)
@@ -41,8 +38,30 @@ public class Project {
   @JsonFormat(pattern = "yyyy-mm-dd")
   private Date updateDate;
 
-  @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy = "project")
+  @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "project")
   private Backlog backlog;
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JsonIgnore
+  private User user;
+
+  public User getUser() {
+    return user;
+  }
+
+  public void setUser(User user) {
+    this.user = user;
+  }
+
+  private String projectLeader;
+
+  public String getProjectLeader() {
+    return projectLeader;
+  }
+
+  public void setProjectLeader(String projectLeader) {
+    this.projectLeader = projectLeader;
+  }
 
   public Long getId() {
     return id;
