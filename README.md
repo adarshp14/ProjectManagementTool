@@ -2,6 +2,7 @@
 This is a tool used to manage all the time lines task and details in a project.
 The front end was built using React and for the backend Spring boot was used and the database of choice was MYSQL.
 The project has end to end functionality including Registration,Login,etc with authentication using secure JWT's.
+The application is hosted at:https://app-management-tool.herokuapp.com
 In order to clone the project follow the below steps:
 
 1.Import the react client to IDE of your choice and in the package.json change the proxy to the URL where your spring application is running.
