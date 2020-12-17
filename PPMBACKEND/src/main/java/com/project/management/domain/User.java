@@ -1,5 +1,6 @@
 package com.project.management.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -28,7 +29,9 @@ public class User implements UserDetails {
     private String password;
     @Transient
     private String confirmPassword;
+    @JsonFormat(pattern = "yyyy-mm-dd")
     private Date create_At;
+    @JsonFormat(pattern = "yyyy-mm-dd")
     private Date update_At;
 
     //OneToMany with Project
